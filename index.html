@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#166534">
+  <title>TomatoCare | Tomato Leaf Health</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="TomatoCare home"><span class="brand-icon">🍅</span> TomatoCare</a>
+    <span class="top-note">AI-assisted plant health</span>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">SMART AGRICULTURE • CNN IMAGE ANALYSIS</div>
+      <h1>Healthy leaves.<br><span>Healthier harvests.</span></h1>
+      <p>Capture a tomato leaf with your camera or upload a photo to check for supported diseases and review plant-care recommendations.</p>
+    </section>
+
+    <section class="card upload-card">
+      <div class="section-title">
+        <div>
+          <p class="eyebrow">STEP 1</p>
+          <h2>Add a leaf image</h2>
+        </div>
+        <span class="step-icon">📷</span>
+      </div>
+      <p class="muted">For best results, use a clear, well-lit photo with the leaf filling most of the frame.</p>
+
+      <input id="imageInput" type="file" accept="image/*" hidden>
+      <div class="action-row">
+        <button id="uploadButton" class="btn btn-primary" type="button">Choose image</button>
+        <button id="cameraButton" class="btn btn-light" type="button">Open live camera</button>
+      </div>
+
+      <div id="cameraPanel" class="camera-panel" hidden>
+        <video id="cameraVideo" autoplay playsinline muted></video>
+        <div class="action-row">
+          <button id="captureButton" class="btn btn-primary" type="button">Capture photo</button>
+          <button id="closeCameraButton" class="btn btn-light" type="button">Close camera</button>
+        </div>
+      </div>
+
+      <div id="previewPanel" class="preview-panel" hidden>
+        <div class="preview-heading"><h3>Image preview</h3><button id="removeButton" class="text-button" type="button">Remove</button></div>
+        <img id="imagePreview" alt="Preview of selected tomato leaf">
+        <button id="analyzeButton" class="btn btn-primary full-width" type="button">Analyze leaf</button>
+      </div>
+      <p id="statusMessage" class="status" role="status" aria-live="polite"></p>
+    </section>
+
+    <section id="resultsCard" class="card results-card" hidden>
+      <div class="section-title">
+        <div><p class="eyebrow">STEP 2</p><h2>Analysis results</h2></div>
+        <span class="result-dot"></span>
+      </div>
+      <div class="prediction-box">
+        <div><p class="muted small">Predicted condition</p><h3 id="predictionName">—</h3></div>
+        <div class="confidence"><strong id="confidenceValue">—</strong><span>confidence</span></div>
+      </div>
+      <p id="predictionDescription"></p>
+      <div class="result-section"><h3>🌱 Treatment and management</h3><ul id="treatmentList"></ul></div>
+      <div class="result-section"><h3>🛡️ Prevention tips</h3><ul id="preventionList"></ul></div>
+      <p id="notice" class="notice"></p>
+    </section>
+
+    <section class="how-section">
+      <p class="eyebrow">HOW IT WORKS</p><h2>Three simple steps</h2>
+      <div class="steps">
+        <article class="step"><span>01</span><h3>Capture or upload</h3><p>Provide a clear image of a tomato leaf.</p></article>
+        <article class="step"><span>02</span><h3>CNN analysis</h3><p>The trained model compares image patterns with its learned classes.</p></article>
+        <article class="step"><span>03</span><h3>Review guidance</h3><p>Read possible disease information and prevention advice.</p></article>
+      </div>
+    </section>
+
+    <footer><strong>TomatoCare</strong><p>Educational decision support for tomato plant care.</p><small>AI results are not a confirmed diagnosis. Consult an agricultural expert if symptoms are uncertain.</small></footer>
+  </main>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
